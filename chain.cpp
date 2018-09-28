@@ -105,31 +105,31 @@ void Chain::weave(Chain & other) { // leaves other empty.
    // doesn't work yet because copy() not done
    cout << "SEG"<< endl;
    // Seg fault here
-   Block curBlock = head_->next->data;
-   //check if size is the same
-   cout << "before if " << endl;
-    if(curBlock.height() == othBlock.height() && 
-       curBlock.width() == othBlock.width()  ) {
-        cout << "Same size" << endl;
-        // see if ori is longer than other
-        cout << "inside weave if" << endl;
-        if (true){
-            //can we link one node from another chain into another?
-            //can we create new node? pizza say node only created in
-            // insertback and copy
-        }else{
-            // connect the last 
-            /*
-            first->next = First;
-            First->prev = first;
-            First->next = second;
-            second->prev = First;
-            */
-        }
-    } else {
-        cout << "Block sizes differ" << endl;
-        }
-    cout << "end of weave" << endl;
+//    Block curBlock = head_->next->data;
+//    //check if size is the same
+//    cout << "before if " << endl;
+//     if(curBlock.height() == othBlock.height() && 
+//        curBlock.width() == othBlock.width()  ) {
+//         cout << "Same size" << endl;
+//         // see if ori is longer than other
+//         cout << "inside weave if" << endl;
+//         if (true){
+//             //can we link one node from another chain into another?
+//             //can we create new node? pizza say node only created in
+//             // insertback and copy
+//         }else{
+//             // connect the last 
+//             /*
+//             first->next = First;
+//             First->prev = first;
+//             First->next = second;
+//             second->prev = First;
+//             */
+//         }
+//     } else {
+//         cout << "Block sizes differ" << endl;
+//         }
+//     cout << "end of weave" << endl;
                  
 }
 
