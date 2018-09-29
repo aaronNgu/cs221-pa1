@@ -115,43 +115,6 @@ void Chain::reverseSub(int pos1, int pos2){
 void Chain::weave(Chain & other) { // leaves other empty.
     /*your code here */
 
-   cout << "before seg fault inside weave" << endl;
-   // Block othBlock = other.head_->next->data;
-   // doesn't work yet because copy() not done
-   cout << "SEG"<< endl;
-   // Seg fault here
-   // Block curBlock = head_->next->data;
-//    Node* curr1 = head_->next;
-//    Node* curr2 = other.head_->next;
-//    Node* cur = curr2;
-//    Node* nCurr1 = curr1->next;
-//    Node* nCurr2 = cur->next;
-//    //true if one and false if second list
-//    bool pos = true;
-//    while(cur-!=tail_ || curr2->next!=other.tail_){
-//        if()
-//        if(pos){
-//            // runs if is first
-//            cur->next = nCurr1;
-//            nCurr1->prev = cur;
-//            cur->prev = curr1;
-//            curr1->next = cur;
-//            curr1 = cur;
-//            cur = nCurr1;
-//            nCurr1 = nCurr1->next;
-//            pos = false;
-//        } else {
-//            //runs if cur is second
-//            cur->next = nCurr1;
-//            nCurr1->prev = cur;
-//            cur->prev = curr1;
-//            curr1->next = cur;
-//            curr1 = cur;
-//            cur = nCurr1;
-//            nCurr1 = nCurr1->next;
-//            pos = true;
-//        }
-//    }
         Node* node1 = other.head_;
         Node* node2 = head_->next;
         Node* node3 = node1->next;
@@ -217,22 +180,22 @@ void Chain::copy(Chain const& other) {
     /*your code here*/
     // makes current object into copy 
     // uses new 
-    Node* head_ = new Node(Block());
-    Node* tail_ = new Node(Block());
-    head_->next = tail_;
-    tail_->prev = head_;
-    Node* othNode = other.head_->next;
-    for(int i = 0; i < other.size() ; i ++){
-        Node * newNode = new Node(othNode->data);
-        Node * prevNode = tail_-> prev;
-        newNode->next = tail_;
-        tail_->prev = newNode;
-        newNode->prev = prevNode;
-        prevNode->next = newNode;
-        length_++;
-        othNode = othNode->next;
-        // why can't I use insertBack??
-    }
+    // Node* head_ = new Node(Block());
+    // Node* tail_ = new Node(Block());
+    // head_->next = tail_;
+    // tail_->prev = head_;
+    // Node* othNode = other.head_->next;
+    // for(int i = 0; i < other.size() ; i ++){
+    //     Node * newNode = new Node(othNode->data);
+    //     Node * prevNode = tail_-> prev;
+    //     newNode->next = tail_;
+    //     tail_->prev = newNode;
+    //     newNode->prev = prevNode;
+    //     prevNode->next = newNode;
+    //     length_++;
+    //     othNode = othNode->next;
+    //     // why can't I use insertBack??
+    // }
     
 }
 
