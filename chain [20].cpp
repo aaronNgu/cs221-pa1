@@ -9,7 +9,7 @@
  */
 Chain::~Chain(){ 
     /*your code here*/
-
+    cout << "destructor is called" << endl;
     clear();
 }
 
@@ -114,47 +114,72 @@ void Chain::reverseSub(int pos1, int pos2){
 */
 void Chain::weave(Chain & other) { // leaves other empty.
     /*your code here */
-        // check size
-         if(height_ == other.height_ || width_ == other.width_){
-             
-             Node* node1 = head_->next;
-             Node* node2 = other.head_->next;
-             
-             while(node1 != tail_ && node2 != other.tail_){
-                 Node* cur = node2;
-                 node2 = node2->next;
-                 cur->next->prev = cur->prev;
-                 cur->prev->next = cur->next;
-                 node1->next->prev = cur;
-                 cur->next = node1->next;
-                 node1->next = cur;
-                 cur->prev = node1;
-                 node1 = node1->next->next;
-                 length_++;
-                 other.length_--; 
-             }
 
-             //if node1 is the tail 
-             if (node2 != other.tail_){
-                 node1 = tail_->prev;
-                 node2 = other.head_->next;
 
-                 node1->next = node2;
-                 node2->prev = node1;                
-                 other.head_->next = other.tail_;
-                 other.tail_->prev = other.head_;
-                 other.tail_->prev->next = tail_;
-                 tail_->prev = other.tail_->prev;
-                 
+        // Node* node1 = other.head_;
+        // Node* node2 = head_->next;
+        // Node* node3 = node1->next;
+        // Node* node4 = node2->next;
+        // Node* node5 = node3->next;
+        // Node* beforeTail = other.tail_->prev;
+        
+        // //runs while second list isnt empty 
+        // if(height_ = other.height_|| width_ != other.width_){
+        //     while(node5 != other.tail_ && node2 != tail_){
+        //      
+        //         node3->next=node4;
+        //         node4->prev=node3;
+        //         node2->next=node3;
+        //         node3->prev=node2;
+        //         node5->prev=node1;
+        //         node1->next=node5;
 
-                 other.length_ = 0;
-                 length_ += other.length_;
-              
-             }
-         }else{
-             cout << "Block sizes differ" << endl;
-         }
-   
+        //         node3=node5;
+        //         node2=node4;
+        //         node4=node4->next;
+        //         node5=node5->next; 
+        //         length_++;
+        //         other.length_--;
+        //     }
+        //     
+
+
+        // }else{
+        //     cout<< "Block sizes differ." << endl;
+        // }       
+         if (height_ != other.height_ || width_ != other.width_){
+        cout << "Block sizes differ." << endl;
+    } else {
+        Node* otherPtr = other.head_->next;
+        Node* currPtr = head_->next;
+        while (currPtr != tail_ && otherPtr != other.tail_){
+            Node* temp = otherPtr;
+            otherPtr = otherPtr->next;
+            temp->next->prev = temp->prev;
+            temp->prev->next = temp->next;
+            currPtr->next->prev = temp;
+            temp->next = currPtr->next;
+            currPtr->next = temp;
+            temp->prev = currPtr;
+            currPtr = walk(currPtr, 2);
+            length_++;
+            other.length_--;
+        }
+
+        if (otherPtr != other.tail_){
+            currPtr = tail_->prev;
+            otherPtr = other.head_->next;
+            otherPtr->prev = currPtr;
+            currPtr->next = otherPtr;
+            tail_->prev = other.tail_->prev;
+            other.tail_->prev->next = tail_;
+            other.head_->next = other.tail_;
+            other.tail_->prev = other.head_;
+            length_ += other.length_;
+            other.length_ = 0;
+        }
+
+    }
 }
 
 
@@ -165,7 +190,7 @@ void Chain::weave(Chain & other) { // leaves other empty.
 
 void Chain::clear() {
     /*your code here*/
-
+    cout << "clear is called" << endl;
     Node* cur = head_->next;
     Node* nxt = cur->next;
     delete head_;
@@ -188,22 +213,22 @@ void Chain::copy(Chain const& other) {
     /*your code here*/
     // makes current object into copy 
     // uses new 
-    Node* head_ = new Node(Block());
-    Node* tail_ = new Node(Block());
-    head_->next = tail_;
-    tail_->prev = head_;
-    Node* othNode = other.head_->next;
-    for(int i = 0; i < other.size() ; i ++){
-        Node * newNode = new Node(othNode->data);
-        Node * prevNode = tail_-> prev;
-        newNode->next = tail_;
-        tail_->prev = newNode;
-        newNode->prev = prevNode;
-        prevNode->next = newNode;
-        length_++;
-        othNode = othNode->next;
-        // why can't I use insertBack??
-    }
+    // Node* head_ = new Node(Block());
+    // Node* tail_ = new Node(Block());
+    // head_->next = tail_;
+    // tail_->prev = head_;
+    // Node* othNode = other.head_->next;
+    // for(int i = 0; i < other.size() ; i ++){
+    //     Node * newNode = new Node(othNode->data);
+    //     Node * prevNode = tail_-> prev;
+    //     newNode->next = tail_;
+    //     tail_->prev = newNode;
+    //     newNode->prev = prevNode;
+    //     prevNode->next = newNode;
+    //     length_++;
+    //     othNode = othNode->next;
+    //     // why can't I use insertBack??
+    // }
     
 }
 
