@@ -166,23 +166,14 @@ void Chain::weave(Chain & other) { // leaves other empty.
 void Chain::clear() {
     /*your code here*/
 
-    // Node* cur = head_->next;
-    // Node* nxt = cur->next;
-    // delete head_;
-    // while(cur != tail_){
-    //     delete cur;
-    //     cur = nxt;
-    //     nxt = nxt->next;
-    // }
-    // delete tail_;
-    
-    Node* curr = head_;
-    while (curr != NULL) {
-        Node* destruct = curr->next;
-        delete curr;
-        curr = destruct;
+    Node* cur = head_->next;
+    delete head_;
+    while(cur != NULL){
+        Node* nxt = cur->next;
+        delete cur;
+        cur = nxt;
     }
-
+ 
 }
 
 /* makes the current object into a copy of the parameter:
@@ -216,20 +207,5 @@ void Chain::copy(Chain const& other) {
         // why can't I use insertBack??
     }
 
-    // head_ = new Node();
-    // tail_ = new Node();
-    // head_->next = tail_;
-    // tail_->prev = head_;
-    // length_ = 0;
-    // width_ = other.width_;
-    // height_ = other.height_;
-
-    // Node *otherData = other.head_->next;
-
-    // for (int i = 0; i < other.size(); i++) {
-    //     insertBack(otherData->data);
-    //     otherData = otherData->next;
-    // }
-    
 }
 
