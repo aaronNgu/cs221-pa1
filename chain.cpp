@@ -73,20 +73,20 @@ void Chain::moveBack(int startPos, int len, int dist){
  */
 void Chain::roll(int k){
     /*your code here*/
-    Node * backStart = walk(head_, size()- k + 1);
-    Node * backEnd = tail_->prev;
+    // Node * backStart = walk(head_, size()- k + 1);
+    // Node * backEnd = tail_->prev;
 
 
-    Node * temp = backStart->prev;
+    // Node * temp = backStart->prev;
 
-    backEnd->next = head_->next;
-    head_->next->prev = backEnd;
-    head_->next = backStart;
-    backStart->prev->next = tail_;
-    backStart->prev=head_;
-    tail_->prev= temp;
-    delete temp;
-    temp = NULL;
+    // backEnd->next = head_->next;
+    // head_->next->prev = backEnd;
+    // head_->next = backStart;
+    // backStart->prev->next = tail_;
+    // backStart->prev=head_;
+    // tail_->prev= temp;
+    // delete temp;
+    // temp = NULL;
 }
 
 /**
@@ -166,15 +166,23 @@ void Chain::weave(Chain & other) { // leaves other empty.
 void Chain::clear() {
     /*your code here*/
 
-    Node* cur = head_->next;
-    Node* nxt = cur->next;
-    delete head_;
-    while(cur != tail_){
-        delete cur;
-        cur = nxt;
-        nxt = nxt->next;
+    // Node* cur = head_->next;
+    // Node* nxt = cur->next;
+    // delete head_;
+    // while(cur != tail_){
+    //     delete cur;
+    //     cur = nxt;
+    //     nxt = nxt->next;
+    // }
+    // delete tail_;
+    
+    Node* curr = head_;
+    while (curr != NULL) {
+        Node* destruct = curr->next;
+        delete curr;
+        curr = destruct;
     }
-    delete tail_;
+
 }
 
 /* makes the current object into a copy of the parameter:
@@ -188,10 +196,13 @@ void Chain::copy(Chain const& other) {
     /*your code here*/
     // makes current object into copy 
     // uses new 
-    Node* head_ = new Node(Block());
-    Node* tail_ = new Node(Block());
+    head_ = new Node();
+    tail_ = new Node();
     head_->next = tail_;
     tail_->prev = head_;
+    length_ = 0;
+    width_ = other.width_;
+    height_ = other.height_;
     Node* othNode = other.head_->next;
     for(int i = 0; i < other.size() ; i ++){
         Node * newNode = new Node(othNode->data);
@@ -204,6 +215,21 @@ void Chain::copy(Chain const& other) {
         othNode = othNode->next;
         // why can't I use insertBack??
     }
+
+    // head_ = new Node();
+    // tail_ = new Node();
+    // head_->next = tail_;
+    // tail_->prev = head_;
+    // length_ = 0;
+    // width_ = other.width_;
+    // height_ = other.height_;
+
+    // Node *otherData = other.head_->next;
+
+    // for (int i = 0; i < other.size(); i++) {
+    //     insertBack(otherData->data);
+    //     otherData = otherData->next;
+    // }
     
 }
 
