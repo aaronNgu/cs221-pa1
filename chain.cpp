@@ -9,7 +9,7 @@
  */
 Chain::~Chain(){ 
     /*your code here*/
-
+    cout << "destructor called" << endl;
     clear();
 }
 
@@ -97,6 +97,20 @@ void Chain::roll(int k){
  */
 void Chain::reverseSub(int pos1, int pos2){
     /*your code here */
+    Node * start = walk(head_, pos1);
+    Node * end = walk(head_, pos2);
+    for(int i = pos1; i < pos2 ;i++){
+        Node* endNext = end->next;
+        Node* startPrev = start->prev;
+        startPrev->next = start->next;
+        start->next->prev = startPrev;
+        start->next = endNext;
+        endNext->prev = start;
+        start->prev = end;
+        end->next = start;
+        end = start->prev;
+        start = startPrev->next; 
+    }
 }
 
 /*
@@ -187,6 +201,7 @@ void Chain::copy(Chain const& other) {
     /*your code here*/
     // makes current object into copy 
     // uses new 
+    cout << "clear called" << endl;
     head_ = new Node();
     tail_ = new Node();
     head_->next = tail_;
