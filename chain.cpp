@@ -73,20 +73,22 @@ void Chain::moveBack(int startPos, int len, int dist){
  */
 void Chain::roll(int k){
     /*your code here*/
-    // Node * backStart = walk(head_, size()- k + 1);
-    // Node * backEnd = tail_->prev;
 
+    if (k == size()){
+        return;
+    }
+    Node* backStart = walk(head_, size() - k + 1);
+    Node* backEnd = tail_->prev;
 
-    // Node * temp = backStart->prev;
-
-    // backEnd->next = head_->next;
-    // head_->next->prev = backEnd;
-    // head_->next = backStart;
-    // backStart->prev->next = tail_;
-    // backStart->prev=head_;
-    // tail_->prev= temp;
-    // delete temp;
-    // temp = NULL;
+    Node* frontEnd = backStart->prev;
+    Node* frontStart = head_->next;
+    
+    backStart->prev = head_;
+    head_->next=backStart;
+    frontEnd->next= tail_;
+    tail_->prev = frontEnd;
+    backEnd->next = frontStart;
+    frontStart->prev= backEnd;
 }
 
 /**
